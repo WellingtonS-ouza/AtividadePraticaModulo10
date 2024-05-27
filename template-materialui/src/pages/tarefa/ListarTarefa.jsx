@@ -20,13 +20,13 @@ import EditarTarefa from './EditarTarefa';
 
 //A função abaixo é usada para criar o array contendo os dados iniciais da listagem de tarefas.
 function createData(
-  idTarefa: number,
-  tituloTarefa: string,
-  descricaoTarefa: string,
-  inicioTarefa: string,
-  fimTarefa: string,
-  statusTarefa: string,
-  recursoTarefa: string,
+  idTarefa,
+  tituloTarefa,
+  descricaoTarefa,
+  inicioTarefa,
+  fimTarefa,
+  statusTarefa,
+  recursoTarefa,
 ) {
   return { idTarefa, tituloTarefa, descricaoTarefa, inicioTarefa, fimTarefa, statusTarefa, recursoTarefa };
 }
@@ -105,31 +105,28 @@ const ListarTarefa = () => {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {tarefas.map((row, indice) => (
-                    <TableRow
-                    key={indice}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                          {row.idTarefa}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                          {row.tituloTarefa}
-                      </TableCell>
-                      <TableCell align="right">{row.descricaoTarefa}</TableCell>
-                      <TableCell align="right">{row.inicioTarefa}</TableCell>
-                      <TableCell align="right">{row.fimTarefa}</TableCell>
-                      <TableCell align="right">{row.statusTarefa}</TableCell>
-                      <TableCell align="right">{row.recursoTarefa}</TableCell>
-                      <TableCell align="center">
-                        <Button variant="contained" color="success" onClick={() => handleEditar(row.idTarefa)}><EditIcon fontSize="small" /></Button>            
-                      </TableCell>
-                      <TableCell align="center">
-                        <Button variant="contained" color="error" onClick={() => handleDeletar(row.idTarefa)}><DeleteIcon fontSize="small" /></Button>            
-                      </TableCell>
-                    </TableRow>
-                ))}
-                </TableBody>
+  {tarefas.map(({ idTarefa, tituloTarefa, descricaoTarefa, inicioTarefa, fimTarefa, statusTarefa, recursoTarefa }, indice) => (
+    <TableRow key={indice} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+      <TableCell>{idTarefa}</TableCell>
+      <TableCell>{tituloTarefa}</TableCell>
+      <TableCell align="right">{descricaoTarefa}</TableCell>
+      <TableCell align="right">{inicioTarefa}</TableCell>
+      <TableCell align="right">{fimTarefa}</TableCell>
+      <TableCell align="right">{statusTarefa}</TableCell>
+      <TableCell align="right">{recursoTarefa}</TableCell>
+      <TableCell align="center">
+        <Button variant="contained" color="success" onClick={() => handleEditar(idTarefa)}>
+          <EditIcon fontSize="small" />
+        </Button>
+      </TableCell>
+      <TableCell align="center">
+        <Button variant="contained" color="error" onClick={() => handleDeletar(idTarefa)}>
+          <DeleteIcon fontSize="small" />
+        </Button>
+      </TableCell>
+    </TableRow>
+  ))}
+</TableBody>
             </Table>
             </TableContainer>
         </CardContent>
